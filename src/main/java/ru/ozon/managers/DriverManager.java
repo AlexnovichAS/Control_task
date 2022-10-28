@@ -11,6 +11,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import static ru.ozon.utils.PropConst.*;
 
@@ -158,7 +161,22 @@ public class DriverManager {
                 break;
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", props.getProperty(chrome));
-                driver = new ChromeDriver();
+ /*               ChromeOptions options = new ChromeOptions();
+                options.setExperimentalOption("useAutomationExtension", false);
+                options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+//                options.addArguments("user-data-dir=C:\\Users\\aster\\IdeaProjects\\IBS\\Домашки по Selenium\\Control_task\\src\\main\\resources\\drivers");
+                options.addArguments("--disable-blink-features");
+                options.addArguments("--incognito", "--disable-blink-features=AutomationControlled");
+                DesiredCapabilities cap = new DesiredCapabilities();
+                cap.setCapability(ChromeOptions.CAPABILITY, options);
+                driver = new ChromeDriver(cap);*/
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--disable-blink-features");
+                options.addArguments("--disable-blink-features=AutomationControlled");
+                driver = new ChromeDriver(options);
+                Map<String, Object> params = new HashMap<String, Object>();
+                params.put("source", "Object.defineProperty(navigator, 'webdriver', { get: () => undefined })");
+//                driver.executeCdpCommand("Page.addScriptToEvaluateOnNewDocument", params);
                 break;
             case "remote":
                 DesiredCapabilities capabilities = new DesiredCapabilities();

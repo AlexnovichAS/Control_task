@@ -22,12 +22,11 @@ public class SearсhResultsPage extends BasePage{
     /**
      * Поиск кнопки "Найти"
      * @author Алехнович Александр
-     * @param product - значение вводимое в поле поиска
      * @return SearсhResultsPage - переходим на страницу результатов поиска {@link SearсhResultsPage}
      */
-    public SearсhResultsPage menuSetting(String product) {
+    public SearсhResultsPage menuSetting(String menu,String value) {
         inputPriceUpTo.sendKeys("150000");
         checkBoxHighRating.click();
-        return pageManager.getSearсhResultsPage();
+        return this;
     }
 }

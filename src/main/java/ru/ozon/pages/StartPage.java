@@ -24,9 +24,9 @@ public class StartPage extends BasePage{
      * @param product - значение вводимое в поле поиска
      * @return SearсhResultsPage - переходим на страницу результатов поиска {@link SearсhResultsPage}
      */
-    public SearсhResultsPage find(String product) {
-        input.sendKeys("product");
+    public StartPage find(String product) {
+        input.sendKeys(product);
         search.click();
-        return pageManager.getSearсhResultsPage();
+        return this;
     }
 }
